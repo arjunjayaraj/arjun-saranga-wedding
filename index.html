@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arjun & Saranga | Wedding Celebration</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kasavu: {
+                            cream: '#FAF6EE',
+                            gold: '#D4AF37',
+                            darkgold: '#AA820A',
+                            green: '#1B3B2B',
+                            lightgreen: '#2A5C4D',
+                            blush: '#F9ECE5',
+                            terracotta: '#C86D51'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                        script: ['Great Vibes', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .kasavu-border-top {
+            border-top: 5px solid #D4AF37;
+            box-shadow: 0 -2px 10px rgba(212, 175, 55, 0.2);
+        }
+        .kasavu-border-bottom {
+            border-bottom: 5px solid #D4AF37;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+        .bg-pattern {
+            background-color: #FAF6EE;
+            background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#D4AF37 0.75px, #FAF6EE 0.75px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #AA820A 0%, #D4AF37 50%, #8A6503 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-kasavu-cream text-gray-800 font-sans antialiased selection:bg-kasavu-gold selection:text-white min-h-screen flex flex-col">
+
+    <!-- Sticky Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-kasavu-cream/95 backdrop-blur-md border-b border-kasavu-gold/30 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand / Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="relative w-10 h-10 flex items-center justify-center">
+                        <img 
+                            src="images/weddinglogo.jpg" 
+                            alt="Arjun & Saranga Wedding Logo" 
+                            class="w-10 h-10 object-contain rounded-full drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.style.display='none'; document.getElementById('nav-logo-svg').style.display='flex';"
+                        />
+                        <div id="nav-logo-svg" class="hidden w-10 h-10 rounded-full border border-kasavu-gold bg-kasavu-blush items-center justify-center text-kasavu-green font-serif font-bold text-sm">
+                            A&S
+                        </div>
+                    </div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold text-kasavu-green tracking-wide">
+                        Arjun <span class="text-kasavu-gold">&</span> Saranga
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wider text-kasavu-green uppercase">
+                    <a href="#home" class="hover:text-kasavu-gold transition-colors duration-200">Home</a>
+                    <a href="#countdown" class="hover:text-kasavu-gold transition-colors duration-200">Countdown</a>
+                    <a href="#story" class="hover:text-kasavu-gold transition-colors duration-200">Our Story</a>
+                    <a href="#events" class="hover:text-kasavu-gold transition-colors duration-200">Events</a>
+                    <a href="#travel" class="hover:text-kasavu-gold transition-colors duration-200">Travel</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" type="button" aria-label="Toggle Navigation Menu" class="text-kasavu-green hover:text-kasavu-gold focus:outline-none p-2">
+                        <svg id="menu-icon-open" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="menu-icon-close" class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-kasavu-cream border-b border-kasavu-gold/30 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm tracking-wider text-center text-kasavu-green">
+            <a href="#home" class="block py-2 hover:text-kasavu-gold transition-colors">Home</a>
+            <a href="#countdown" class="block py-2 hover:text-kasavu-gold transition-colors">Countdown</a>
+            <a href="#story" class="block py-2 hover:text-kasavu-gold transition-colors">Our Story</a>
+            <a href="#events" class="block py-2 hover:text-kasavu-gold transition-colors">Events</a>
+            <a href="#travel" class="block py-2 hover:text-kasavu-gold transition-colors">Travel</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+
+        <!-- HERO SECTION -->
+        <section id="home" class="py-12 sm:py-16 md:py-24 px-4 bg-pattern relative overflow-hidden">
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                
+                <!-- Wedding Logo Display -->
+                <div class="flex justify-center items-center mb-6">
+                    <div class="relative w-40 sm:w-56 md:w-64">
+                        <img 
+                            src="images/weddinglogo.jpg" 
+                            alt="Arjun and Saranga Royal Logo" 
+                            class="w-full h-auto object-contain mx-auto drop-shadow-xl hover:scale-105 transition-transform duration-300"
+                            onerror="this.style.display='none'; document.getElementById('hero-logo-svg').style.display='flex';"
+                        />
+                        <div id="hero-logo-svg" class="hidden flex-col items-center justify-center p-4 bg-white/80 rounded-2xl border-2 border-kasavu-gold text-kasavu-green shadow-lg">
+                            <svg class="w-12 h-12 text-kasavu-gold mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                            <span class="font-serif font-bold text-lg text-kasavu-green">A & S</span>
+                            <span class="text-xs text-kasavu-gold uppercase tracking-widest mt-1">Shiva & Parvathy Union</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Title & Names -->
+                <p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-kasavu-gold mb-2">
+                    With Divine Blessings of Lord Shiva & Goddess Parvathy
+                </p>
+                <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-kasavu-green mb-3 tracking-tight">
+                    Arjun <span class="font-script text-kasavu-gold font-normal px-1 sm:px-2 text-5xl sm:text-7xl md:text-8xl">&</span> Saranga
+                </h1>
+                <p class="font-serif italic text-lg sm:text-2xl text-kasavu-terracotta mb-8">
+                    Together with their families, invite you to celebrate their wedding
+                </p>
+
+                <!-- Custom Caricature Container -->
+                <div class="relative mx-auto w-64 h-88 sm:w-80 sm:h-[28rem] rounded-t-full border-4 border-kasavu-gold p-3 bg-white shadow-2xl mb-10 group hover:scale-[1.01] transition-transform duration-300">
+                    <div class="w-full h-full rounded-t-full overflow-hidden bg-kasavu-blush flex items-center justify-center border border-kasavu-gold/30 relative">
+                        <img 
+                            src="images/caricature.jpg" 
+                            alt="Arjun & Saranga Kerala Kasavu Caricature" 
+                            class="w-full h-full object-cover object-top"
+                            onerror="this.style.display='none'; document.getElementById('hero-caricature-svg').style.display='flex';"
+                        />
+                        <div id="hero-caricature-svg" class="hidden flex-col items-center justify-center p-6 text-center h-full w-full bg-gradient-to-b from-kasavu-cream to-kasavu-blush">
+                            <svg class="w-24 h-24 text-kasavu-gold mb-3" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                                <circle cx="35" cy="35" r="14" stroke-width="2" class="text-kasavu-green"/>
+                                <circle cx="65" cy="35" r="13" stroke-width="2" class="text-kasavu-green"/>
+                                <path d="M20 75 Q35 52 50 75" stroke-width="2" class="text-kasavu-green"/>
+                                <path d="M50 75 Q65 52 80 75" stroke-width="2" class="text-kasavu-green"/>
+                                <circle cx="65" cy="23" r="3" fill="#D4AF37"/>
+                                <path d="M50 20 L50 40 M45 25 L55 25" stroke-width="2" stroke="#D4AF37"/>
+                            </svg>
+                            <p class="font-serif text-2xl font-bold text-kasavu-green">Arjun & Saranga</p>
+                            <p class="text-xs font-semibold text-kasavu-gold tracking-widest uppercase mt-2">December 20, 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Date & Venue Banner -->
+                <div class="inline-block bg-white/90 backdrop-blur-sm border-2 border-kasavu-gold rounded-2xl px-6 py-4 shadow-md max-w-xl mx-auto">
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-kasavu-green">
+                        <div class="text-center sm:text-right">
+                            <p class="font-serif text-xl font-bold">Sunday, 20th Dec 2026</p>
+                            <p class="text-xs text-gray-600 font-medium">Muhurtham: 11:00 AM – 11:30 AM</p>
+                        </div>
+                        <div class="hidden sm:block w-px h-10 bg-kasavu-gold/50"></div>
+                        <div class="text-center sm:text-left">
+                            <p class="font-serif text-xl font-bold">Lotus Auditorium</p>
+                            <p class="text-xs text-gray-600 font-medium">Thalassery, Kerala</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COUNTDOWN SECTION -->
+        <section id="countdown" class="py-12 bg-kasavu-green text-white relative kasavu-border-top kasavu-border-bottom">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="font-serif text-2xl sm:text-3xl font-semibold mb-2 text-kasavu-gold tracking-wide">
+                    Counting Down To Our Auspicious Day
+                </h2>
+                <p class="text-xs sm:text-sm text-kasavu-cream/80 uppercase tracking-widest mb-8">
+                    December 20, 2026 • Thalassery
+                </p>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-kasavu-gold/30">
+                        <span id="cd-days" class="block font-serif text-3xl sm:text-5xl font-bold text-kasavu-gold">00</span>
+                        <span class="text-xs uppercase tracking-wider text-kasavu-cream/90 mt-1 block">Days</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-kasavu-gold/30">
+                        <span id="cd-hours" class="block font-serif text-3xl sm:text-5xl font-bold text-kasavu-gold">00</span>
+                        <span class="text-xs uppercase tracking-wider text-kasavu-cream/90 mt-1 block">Hours</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-kasavu-gold/30">
+                        <span id="cd-minutes" class="block font-serif text-3xl sm:text-5xl font-bold text-kasavu-gold">00</span>
+                        <span class="text-xs uppercase tracking-wider text-kasavu-cream/90 mt-1 block">Minutes</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-kasavu-gold/30">
+                        <span id="cd-seconds" class="block font-serif text-3xl sm:text-5xl font-bold text-kasavu-gold">00</span>
+                        <span class="text-xs uppercase tracking-wider text-kasavu-cream/90 mt-1 block">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR STORY SECTION -->
+        <section id="story" class="py-16 sm:py-24 px-4 bg-kasavu-cream">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-14">
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-kasavu-gold">Two Hearts, One Journey</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-kasavu-green mt-1">Our Story</h2>
+                    <div class="w-16 h-0.5 bg-kasavu-gold mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+                    
+                    <!-- Groom Profile -->
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-kasavu-gold/30 shadow-lg flex flex-col justify-between hover:shadow-xl transition-shadow">
+                        <div>
+                            <div class="w-14 h-14 bg-kasavu-blush rounded-full flex items-center justify-center text-kasavu-green mb-6 border border-kasavu-gold/40">
+                                <svg class="w-7 h-7 stroke-current" fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-kasavu-terracotta">The Groom</span>
+                            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-kasavu-green mt-1 mb-4">Arjun</h3>
+                            <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                                Hailing from the cultural coastal city of Kozhikode, Arjun is a Lead Engineer who combines a passion for technology with deep appreciation for family roots. Calm, composed, and analytical, he brings structural elegance to everything he builds.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500 font-medium">
+                            <span>Kozhikode, Kerala</span>
+                            <span class="text-kasavu-gold font-semibold">Lead Engineer</span>
+                        </div>
+                    </div>
+
+                    <!-- Bride Profile -->
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-kasavu-gold/30 shadow-lg flex flex-col justify-between hover:shadow-xl transition-shadow">
+                        <div>
+                            <div class="w-14 h-14 bg-kasavu-blush rounded-full flex items-center justify-center text-kasavu-green mb-6 border border-kasavu-gold/40">
+                                <svg class="w-7 h-7 stroke-current" fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L5.6 15.12a2 2 0 00-1.42.062l-1.4 1.4A2 2 0 003 18v2a2 2 0 002 2h14a2 2 0 002-2v-2a2 2 0 00-1.572-1.972z"/>
+                                    <circle cx="12" cy="7" r="4" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-kasavu-terracotta">The Bride</span>
+                            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-kasavu-green mt-1 mb-4">Saranga</h3>
+                            <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                                Proudly representing Thalassery, Saranga is pursuing her Ph.D. in Biochemistry at MSU. Energetic, curious, and devoted to science, she balances high-level research with a love for home, culture, and Thalassery's culinary heritage.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500 font-medium">
+                            <span>Thalassery, Kerala</span>
+                            <span class="text-kasavu-gold font-semibold">Ph.D. Scholar (Biochemistry)</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Divine Union Card -->
+                <div class="mt-10 bg-gradient-to-r from-kasavu-blush via-white to-kasavu-blush rounded-2xl p-6 sm:p-8 border border-kasavu-gold/40 text-center shadow-md">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-kasavu-gold/20 text-kasavu-darkgold mb-3">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <h4 class="font-serif text-xl sm:text-2xl font-bold text-kasavu-green">A Cosmic Match</h4>
+                    <p class="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto mt-2 leading-relaxed">
+                        Like the harmony of Shiva and Parvathy, their union blends reason and science, Kozhikode warmth and Thalassery tradition, creating a lifelong journey filled with love and mutual grace.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENTS SECTION -->
+        <section id="events" class="py-16 sm:py-24 px-4 bg-pattern relative">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-14">
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-kasavu-gold">Save The Dates</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-kasavu-green mt-1">Wedding Ceremonies</h2>
+                    <p class="text-gray-600 text-sm sm:text-base mt-2">Join us in celebrating every moment of our auspicious union</p>
+                    <div class="w-16 h-0.5 bg-kasavu-gold mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    
+                    <!-- Event 1: Blessing-Seeking Ceremony -->
+                    <div class="bg-white rounded-2xl border-l-4 border-kasavu-gold p-6 shadow-md hover:shadow-xl transition-shadow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-kasavu-blush text-kasavu-terracotta text-xs font-semibold px-3 py-1 rounded-full border border-kasavu-gold/30">Pre-Wedding</span>
+                                <span class="text-xs font-medium text-gray-500">Dec 19, 2026</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-kasavu-green mb-2">Blessing-Seeking Ceremony</h3>
+                            <p class="text-xs text-kasavu-gold font-semibold uppercase tracking-wider mb-3">Groom's Family Tradition</p>
+                            
+                            <div class="space-y-2 text-sm text-gray-600 mb-6">
+                                <div class="flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-kasavu-gold shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span><strong>Time:</strong> 2:00 PM – 3:00 PM</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-kasavu-gold shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    <span><strong>Venue:</strong> Groom's Residence, Kozhikode</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.app.goo.gl/KPo31hCnB3upA1iX6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-kasavu-cream hover:bg-kasavu-gold hover:text-white text-kasavu-green border border-kasavu-gold/40 rounded-xl text-xs font-semibold tracking-wider uppercase transition-colors">
+                            <span>Open Location Map</span>
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Event 2: Haldi Ceremony -->
+                    <div class="bg-white rounded-2xl border-l-4 border-kasavu-gold p-6 shadow-md hover:shadow-xl transition-shadow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-kasavu-blush text-kasavu-terracotta text-xs font-semibold px-3 py-1 rounded-full border border-kasavu-gold/30">Pre-Wedding</span>
+                                <span class="text-xs font-medium text-gray-500">Dec 19, 2026</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-kasavu-green mb-2">Haldi Ceremony</h3>
+                            <p class="text-xs text-kasavu-gold font-semibold uppercase tracking-wider mb-3">Celebration of Color & Blessings</p>
+                            
+                            <div class="space-y-2 text-sm text-gray-600 mb-6">
+                                <div class="flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-kasavu-gold shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span><strong>Time:</strong> 9:00 PM – 10:00 PM</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-kasavu-gold shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    <span><strong>Venue:</strong> Bride's Residence, Thalassery</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.app.goo.gl/KPo31hCnB3upA1iX6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-kasavu-cream hover:bg-kasavu-gold hover:text-white text-kasavu-green border border-kasavu-gold/40 rounded-xl text-xs font-semibold tracking-wider uppercase transition-colors">
+                            <span>Open Location Map</span>
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Event 3: Muhurtham & Marriage -->
+                    <div class="bg-white rounded-2xl border-l-4 border-kasavu-green p-6 shadow-lg hover:shadow-xl transition-shadow flex flex-col justify-between ring-1 ring-kasavu-gold/40">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-kasavu-green text-kasavu-gold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Main Event</span>
+                                <span class="text-xs font-semibold text-kasavu-green">Dec 20, 2026</span>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold text-kasavu-green mb-2">Muhurtham & Marriage</h3>
+                            <p class="text-xs text-kasavu-gold font-semibold uppercase tracking-wider mb-3">Traditional Kerala Wedding Ceremony</p>
+                            
+                            <div class="space-y-2 text-sm text-gray-700 mb-6">
+                                <div class="flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-kasavu-gold shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span><strong>Muhurtham:</strong> 11:00 AM – 11:30 AM</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-kasavu-gold shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    <span><strong>Venue:</strong> Lotus Auditorium, Thalassery</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.google.com/?q=Lotus+Auditorium+Thalassery" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-3 px-4 bg-kasavu-green hover:bg-kasavu-lightgreen text-white rounded-xl text-xs font-bold tracking-wider uppercase transition-colors shadow">
+                            <span>Get Directions to Venue</span>
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Event 4: Wedding Reception -->
+                    <div class="bg-white rounded-2xl border-l-4 border-kasavu-gold p-6 shadow-md hover:shadow-xl transition-shadow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-kasavu-blush text-kasavu-terracotta text-xs font-semibold px-3 py-1 rounded-full border border-kasavu-gold/30">Grand Celebration</span>
+                                <span class="text-xs font-medium text-gray-500">Dec 21, 2026</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-kasavu-green mb-2">Wedding Reception</h3>
+                            <p class="text-xs text-kasavu-gold font-semibold uppercase tracking-wider mb-3">Dinner & Celebration</p>
+                            
+                            <div class="space-y-2 text-sm text-gray-600 mb-6">
+                                <div class="flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-kasavu-gold shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span><strong>Time:</strong> 5:30 PM – 9:00 PM</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <svg class="w-4 h-4 text-kasavu-gold shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    <span><strong>Venue:</strong> Ashirvad Lawns, Karaparamba, Calicut</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.google.com/?q=Ashirvad+Lawns+Karaparamba+Calicut" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-kasavu-cream hover:bg-kasavu-gold hover:text-white text-kasavu-green border border-kasavu-gold/40 rounded-xl text-xs font-semibold tracking-wider uppercase transition-colors">
+                            <span>Open Reception Map</span>
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TRAVEL & LOGISTICS SECTION -->
+        <section id="travel" class="py-16 sm:py-24 px-4 bg-kasavu-cream">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-kasavu-gold">Guest Logistics</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-kasavu-green mt-1">Travel Information</h2>
+                    <div class="w-16 h-0.5 bg-kasavu-gold mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Airports -->
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-kasavu-gold/30 shadow-md">
+                        <div class="flex items-center gap-3 mb-4 text-kasavu-green">
+                            <div class="p-3 bg-kasavu-blush rounded-xl border border-kasavu-gold/30 text-kasavu-gold">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold">Nearest Airports</h3>
+                        </div>
+                        <ul class="space-y-4 text-sm text-gray-600">
+                            <li class="pb-3 border-b border-gray-100">
+                                <strong class="text-kasavu-green block font-semibold text-base">Kannur International Airport (CNN)</strong>
+                                <span>Approx. 25 km from Lotus Auditorium, Thalassery (~45 mins drive)</span>
+                            </li>
+                            <li>
+                                <strong class="text-kasavu-green block font-semibold text-base">Calicut International Airport (CCJ)</strong>
+                                <span>Approx. 95 km from Thalassery (~2.5 hours drive) / Convenient for Reception venue in Calicut</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Railway Stations -->
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-kasavu-gold/30 shadow-md">
+                        <div class="flex items-center gap-3 mb-4 text-kasavu-green">
+                            <div class="p-3 bg-kasavu-blush rounded-xl border border-kasavu-gold/30 text-kasavu-gold">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8m-8 4h8m-4 8l-4-4h8l-4 4zm-6-7h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v2a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold">Railway Stations</h3>
+                        </div>
+                        <ul class="space-y-4 text-sm text-gray-600">
+                            <li class="pb-3 border-b border-gray-100">
+                                <strong class="text-kasavu-green block font-semibold text-base">Thalassery Railway Station (TLY)</strong>
+                                <span>Main hub for the Wedding Ceremony (Approx. 3 km to venue)</span>
+                            </li>
+                            <li>
+                                <strong class="text-kasavu-green block font-semibold text-base">Kozhikode Main Station (CLT)</strong>
+                                <span>Main hub for the Reception Venue at Karaparamba, Calicut</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-kasavu-green text-white py-12 px-4 border-t-4 border-kasavu-gold text-center">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <div class="font-serif text-2xl font-bold tracking-wider text-kasavu-gold">
+                Arjun & Saranga
+            </div>
+            <p class="text-xs sm:text-sm text-kasavu-cream/80 max-w-lg mx-auto font-serif italic">
+                "Siva Sakthyatmakaṃ Sarvaṃ" — Seeking your presence, prayers, and heartfelt blessings as we step into our new life together.
+            </p>
+            <div class="pt-6 border-t border-white/10 text-xs text-kasavu-cream/60">
+                &copy; 2026 Arjun & Saranga. Made with love in Kerala.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Countdown & Mobile Menu Handling -->
+    <script>
+        // Dynamic Countdown Script
+        (function() {
+            // Target Date: December 20, 2026 at 11:00:00 IST
+            const targetDate = new Date('2026-12-20T11:00:00+05:30').getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+
+                if (difference > 0) {
+                    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                    document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+                    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+                    document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+                    document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+                } else {
+                    document.getElementById('cd-days').textContent = '00';
+                    document.getElementById('cd-hours').textContent = '00';
+                    document.getElementById('cd-minutes').textContent = '00';
+                    document.getElementById('cd-seconds').textContent = '00';
+                }
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+
+        // Mobile Menu Toggle Script
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+
+        menuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('hidden');
+            if (isOpen) {
+                mobileMenu.classList.remove('hidden');
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        });
+
+        // Auto close menu when clicking link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
