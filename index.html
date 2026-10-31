@@ -89,6 +89,7 @@
                     <a href="#countdown" class="hover:text-kasavu-gold transition-colors duration-200">Countdown</a>
                     <a href="#story" class="hover:text-kasavu-gold transition-colors duration-200">Our Story</a>
                     <a href="#events" class="hover:text-kasavu-gold transition-colors duration-200">Events</a>
+                    <a href="#gallery" class="hover:text-kasavu-gold transition-colors duration-200">Gallery</a>
                     <a href="#travel" class="hover:text-kasavu-gold transition-colors duration-200">Travel</a>
                 </nav>
 
@@ -112,6 +113,7 @@
             <a href="#countdown" class="block py-2 hover:text-kasavu-gold transition-colors">Countdown</a>
             <a href="#story" class="block py-2 hover:text-kasavu-gold transition-colors">Our Story</a>
             <a href="#events" class="block py-2 hover:text-kasavu-gold transition-colors">Events</a>
+            <a href="#gallery" class="block py-2 hover:text-kasavu-gold transition-colors">Gallery</a>
             <a href="#travel" class="block py-2 hover:text-kasavu-gold transition-colors">Travel</a>
         </div>
     </header>
@@ -369,7 +371,7 @@
                             </div>
                         </div>
 
-                        <a href="https://maps.app.goo.gl/KPo31hCnB3upA1iX6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-kasavu-cream hover:bg-kasavu-gold hover:text-white text-kasavu-green border border-kasavu-gold/40 rounded-xl text-xs font-semibold tracking-wider uppercase transition-colors">
+                        <a href="https://maps.app.goo.gl/YUYGmnKS8rt16fhn6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-kasavu-cream hover:bg-kasavu-gold hover:text-white text-kasavu-green border border-kasavu-gold/40 rounded-xl text-xs font-semibold tracking-wider uppercase transition-colors">
                             <span>Open Location Map</span>
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
@@ -451,6 +453,32 @@
             </div>
         </section>
 
+        <!-- SMART DYNAMIC GALLERY SLIDESHOW SECTION -->
+        <section id="gallery" class="py-16 sm:py-24 px-4 bg-kasavu-cream border-t border-kasavu-gold/20">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-kasavu-gold">Precious Moments</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-kasavu-green mt-1">Photo Gallery</h2>
+                    <div class="w-16 h-0.5 bg-kasavu-gold mx-auto mt-4"></div>
+                </div>
+
+                <!-- Gallery Slideshow Container (Hidden until images load) -->
+                <div id="gallery-container" class="relative bg-white p-3 sm:p-4 rounded-2xl border-2 border-kasavu-gold shadow-xl overflow-hidden hidden">
+                    <div id="slides-track" class="flex transition-transform duration-500 ease-out">
+                        <!-- Slides dynamically generated via JS for valid gallery-1.jpg to gallery-10.jpg -->
+                    </div>
+
+                    <!-- Left / Right Navigation Controls -->
+                    <button id="prev-btn" aria-label="Previous Slide" class="absolute left-4 top-1/2 -translate-y-1/2 bg-kasavu-green/80 hover:bg-kasavu-green text-kasavu-gold p-3 rounded-full shadow-lg transition-all focus:outline-none z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="next-btn" aria-label="Next Slide" class="absolute right-4 top-1/2 -translate-y-1/2 bg-kasavu-green/80 hover:bg-kasavu-green text-kasavu-gold p-3 rounded-full shadow-lg transition-all focus:outline-none z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
         <!-- TRAVEL & LOGISTICS SECTION -->
         <section id="travel" class="py-16 sm:py-24 px-4 bg-kasavu-cream">
             <div class="max-w-4xl mx-auto">
@@ -527,7 +555,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript Countdown & Mobile Menu Handling -->
+    <!-- JavaScript Countdown, Mobile Menu & Smart Gallery Handling -->
     <script>
         // Dynamic Countdown Script
         (function() {
@@ -586,6 +614,122 @@
                 iconOpen.classList.remove('hidden');
                 iconClose.classList.add('hidden');
             });
+        });
+
+        // Smart Dynamic Gallery Script (Ignores missing images, hides/shows arrows at boundaries)
+        document.addEventListener("DOMContentLoaded", () => {
+            const track = document.getElementById('slides-track');
+            const galleryContainer = document.getElementById('gallery-container');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            
+            let currentIndex = 0;
+            let loadedSlides = [];
+            let checksCompleted = 0;
+            const totalImagesToCheck = 10;
+
+            for (let i = 1; i <= totalImagesToCheck; i++) {
+                const imgPath = `images/gallery-${i}.jpg`;
+                const img = new Image();
+                img.src = imgPath;
+                
+                img.onload = function() {
+                    const slideDiv = document.createElement('div');
+                    slideDiv.className = 'min-w-full h-80 sm:h-[450px] flex items-center justify-center bg-kasavu-cream rounded-xl overflow-hidden flex-shrink-0';
+                    
+                    const slideImg = document.createElement('img');
+                    slideImg.src = imgPath;
+                    slideImg.alt = `Gallery Photo ${i}`;
+                    slideImg.className = 'w-full h-full object-contain';
+                    
+                    slideDiv.appendChild(slideImg);
+                    loadedSlides.push({ index: i, element: slideDiv });
+                    finalizeGallery();
+                };
+
+                img.onerror = function() {
+                    finalizeGallery();
+                };
+            }
+
+            function finalizeGallery() {
+                checksCompleted++;
+                if (checksCompleted === totalImagesToCheck) {
+                    if (loadedSlides.length > 0) {
+                        loadedSlides.sort((a, b) => a.index - b.index);
+                        loadedSlides.forEach(slide => track.appendChild(slide.element));
+                        galleryContainer.classList.remove('hidden');
+
+                        if (loadedSlides.length > 1) {
+                            const updateButtons = () => {
+                                // Hide left button on first slide, show otherwise
+                                if (currentIndex === 0) {
+                                    prevBtn.style.display = 'none';
+                                } else {
+                                    prevBtn.style.display = 'block';
+                                }
+                                // Hide right button on last slide, show otherwise
+                                if (currentIndex === loadedSlides.length - 1) {
+                                    nextBtn.style.display = 'none';
+                                } else {
+                                    nextBtn.style.display = 'block';
+                                }
+                            };
+
+                            const updateSlidePosition = () => {
+                                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                                updateButtons();
+                            };
+
+                            // Initial button state setup
+                            updateButtons();
+
+                            nextBtn.addEventListener('click', () => {
+                                if (currentIndex < loadedSlides.length - 1) {
+                                    currentIndex++;
+                                    updateSlidePosition();
+                                }
+                            });
+
+                            prevBtn.addEventListener('click', () => {
+                                if (currentIndex > 0) {
+                                    currentIndex--;
+                                    updateSlidePosition();
+                                }
+                            });
+
+                            let touchStartX = 0;
+                            let touchEndX = 0;
+
+                            track.addEventListener('touchstart', e => {
+                                touchStartX = e.changedTouches[0].screenX;
+                            });
+
+                            track.addEventListener('touchend', e => {
+                                touchEndX = e.changedTouches[0].screenX;
+                                if (touchStartX - touchEndX > 50) {
+                                    // Swipe Left
+                                    if (currentIndex < loadedSlides.length - 1) {
+                                        currentIndex++;
+                                        updateSlidePosition();
+                                    }
+                                } else if (touchEndX - touchStartX > 50) {
+                                    // Swipe Right
+                                    if (currentIndex > 0) {
+                                        currentIndex--;
+                                        updateSlidePosition();
+                                    }
+                                }
+                            });
+                        } else {
+                            nextBtn.style.display = 'none';
+                            prevBtn.style.display = 'none';
+                        }
+                    } else {
+                        galleryContainer.classList.add('hidden');
+                    }
+                }
+            }
         });
     </script>
 </body>
