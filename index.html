@@ -57,6 +57,36 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        /* Gallery Carousel iOS WebKit Fixes */
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        .gallery-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+        }
+        .gallery-slide {
+            min-width: 100%;
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery-slide img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            display: block;
+        }
     </style>
 </head>
 <body class="bg-kasavu-cream text-gray-800 font-sans antialiased selection:bg-kasavu-gold selection:text-white min-h-screen flex flex-col">
@@ -463,11 +493,9 @@
                 </div>
 
                 <!-- Gallery Slideshow Container -->
-                <div id="gallery-container" class="relative bg-white p-3 sm:p-4 rounded-2xl border-2 border-kasavu-gold shadow-xl overflow-hidden hidden">
-                    <div class="overflow-hidden w-full rounded-xl">
-                        <div id="slides-track" class="flex transition-transform duration-500 ease-out w-full">
-                            <!-- Slides dynamically generated via JS -->
-                        </div>
+                <div id="gallery-container" class="gallery-container bg-white border-2 border-kasavu-gold shadow-xl hidden">
+                    <div id="slides-track" class="gallery-track">
+                        <!-- Slides dynamically generated via JS -->
                     </div>
 
                     <!-- Left / Right Navigation Controls -->
@@ -618,7 +646,7 @@
             });
         });
 
-        // Smart Dynamic Gallery Script (Ignores missing images, hides/shows arrows at boundaries)
+        // Smart Dynamic Gallery Script (Percentage translation + iOS WebKit flex fixes)
         document.addEventListener("DOMContentLoaded", () => {
             const track = document.getElementById('slides-track');
             const galleryContainer = document.getElementById('gallery-container');
@@ -637,12 +665,11 @@
                 
                 img.onload = function() {
                     const slideDiv = document.createElement('div');
-                    slideDiv.className = 'min-w-full h-80 sm:h-[450px] flex items-center justify-center bg-kasavu-cream rounded-xl overflow-hidden flex-shrink-0';
+                    slideDiv.className = 'gallery-slide';
                     
                     const slideImg = document.createElement('img');
                     slideImg.src = imgPath;
                     slideImg.alt = `Gallery Photo ${i}`;
-                    slideImg.className = 'w-full h-full object-contain';
                     
                     slideDiv.appendChild(slideImg);
                     loadedSlides.push({ index: i, element: slideDiv });
@@ -664,18 +691,8 @@
 
                         if (loadedSlides.length > 1) {
                             const updateButtons = () => {
-                                // Hide left button on first slide, show otherwise
-                                if (currentIndex === 0) {
-                                    prevBtn.style.display = 'none';
-                                } else {
-                                    prevBtn.style.display = 'block';
-                                }
-                                // Hide right button on last slide, show otherwise
-                                if (currentIndex === loadedSlides.length - 1) {
-                                    nextBtn.style.display = 'none';
-                                } else {
-                                    nextBtn.style.display = 'block';
-                                }
+                                prevBtn.style.display = currentIndex === 0 ? 'none' : 'block';
+                                nextBtn.style.display = currentIndex === loadedSlides.length - 1 ? 'none' : 'block';
                             };
 
                             const updateSlidePosition = () => {
@@ -683,7 +700,6 @@
                                 updateButtons();
                             };
 
-                            // Initial button state setup
                             updateButtons();
 
                             nextBtn.addEventListener('click', () => {
@@ -710,13 +726,11 @@
                             track.addEventListener('touchend', e => {
                                 touchEndX = e.changedTouches[0].screenX;
                                 if (touchStartX - touchEndX > 50) {
-                                    // Swipe Left
                                     if (currentIndex < loadedSlides.length - 1) {
                                         currentIndex++;
                                         updateSlidePosition();
                                     }
                                 } else if (touchEndX - touchStartX > 50) {
-                                    // Swipe Right
                                     if (currentIndex > 0) {
                                         currentIndex--;
                                         updateSlidePosition();
