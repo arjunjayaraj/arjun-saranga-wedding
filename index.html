@@ -35,59 +35,10 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
-        .kasavu-border-top {
-            border-top: 5px solid #D4AF37;
-            box-shadow: 0 -2px 10px rgba(212, 175, 55, 0.2);
-        }
-        .kasavu-border-bottom {
-            border-bottom: 5px solid #D4AF37;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
-        }
-        .bg-pattern {
-            background-color: #FAF6EE;
-            background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#D4AF37 0.75px, #FAF6EE 0.75px);
-            background-size: 28px 28px;
-            background-position: 0 0, 14px 14px;
-        }
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #AA820A 0%, #D4AF37 50%, #8A6503 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Gallery Carousel iOS WebKit Fixes */
-        .gallery-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 16px;
-        }
-        .gallery-track {
-            display: flex;
-            transition: transform 0.4s ease-in-out;
-            width: 100%;
-        }
-        .gallery-slide {
-            min-width: 100%;
-            width: 100%;
-            flex-shrink: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .gallery-slide img {
-            width: 100%;
-            height: auto;
-            max-height: 450px;
-            object-fit: contain;
-            display: block;
-        }
-    </style>
+    <!-- External Stylesheet with Cache Busting -->
+    <link rel="stylesheet" href="css/style.css?v=1.0">
 </head>
 <body class="bg-kasavu-cream text-gray-800 font-sans antialiased selection:bg-kasavu-gold selection:text-white min-h-screen flex flex-col">
 
@@ -120,6 +71,7 @@
                     <a href="#story" class="hover:text-kasavu-gold transition-colors duration-200">Our Story</a>
                     <a href="#events" class="hover:text-kasavu-gold transition-colors duration-200">Events</a>
                     <a href="#gallery" class="hover:text-kasavu-gold transition-colors duration-200">Gallery</a>
+                    <a href="#wishes" class="hover:text-kasavu-gold transition-colors duration-200">Wishes</a>
                     <a href="#travel" class="hover:text-kasavu-gold transition-colors duration-200">Travel</a>
                 </nav>
 
@@ -144,6 +96,7 @@
             <a href="#story" class="block py-2 hover:text-kasavu-gold transition-colors">Our Story</a>
             <a href="#events" class="block py-2 hover:text-kasavu-gold transition-colors">Events</a>
             <a href="#gallery" class="block py-2 hover:text-kasavu-gold transition-colors">Gallery</a>
+            <a href="#wishes" class="block py-2 hover:text-kasavu-gold transition-colors">Wishes</a>
             <a href="#travel" class="block py-2 hover:text-kasavu-gold transition-colors">Travel</a>
         </div>
     </header>
@@ -509,6 +462,73 @@
             </div>
         </section>
 
+        <!-- HANDWRITTEN LETTER & WISHES SECTION -->
+        <section id="wishes" class="py-16 sm:py-24 px-4 bg-pattern relative border-t border-kasavu-gold/20 overflow-hidden">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-kasavu-gold">Personal Notes</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-kasavu-green mt-1">Send a Letter to Arjun & Saranga</h2>
+                    <p class="text-gray-600 text-sm sm:text-base mt-2">Write down your favorite story, fun advice, or warmest wedding blessings.</p>
+                    <div class="w-16 h-0.5 bg-kasavu-gold mx-auto mt-4"></div>
+                </div>
+
+                <!-- Letter Paper Container -->
+                <div id="letter-card" class="letter-paper rounded-2xl p-6 sm:p-12 border-2 border-kasavu-gold/50 relative transition-all duration-300">
+                    
+                    <!-- Decorative Postage Seal -->
+                    <div class="absolute top-6 right-6 w-16 h-16 sm:w-20 sm:h-20 border-2 border-dashed border-kasavu-gold/60 rounded-lg flex flex-col items-center justify-center text-center rotate-6 pointer-events-none bg-kasavu-cream/50">
+                        <span class="text-[9px] font-bold text-kasavu-darkgold uppercase tracking-widest">Kerala Post</span>
+                        <span class="font-serif text-xs font-bold text-kasavu-green">20.12.26</span>
+                        <span class="text-[8px] text-kasavu-terracotta font-serif">A & S</span>
+                    </div>
+
+                    <form id="wishes-form" action="https://formspree.io/f/maeepbyj" method="POST" class="space-y-6">
+                        <div class="pt-2">
+                            <span class="font-handwriting text-2xl text-kasavu-green font-semibold">Dear Arjun & Saranga,</span>
+                        </div>
+
+                        <div>
+                            <textarea id="message-content" name="message" rows="5" required placeholder="Write your letter, funny memories, or heartfelt wishes here..." class="w-full bg-transparent border-b border-kasavu-gold/40 focus:border-kasavu-gold outline-none font-handwriting text-xl sm:text-2xl text-kasavu-green placeholder:text-gray-400 placeholder:font-sans placeholder:text-sm resize-none leading-relaxed transition"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                            <div>
+                                <label for="message-type" class="block text-xs font-bold uppercase tracking-wider text-kasavu-gold mb-1">Topic</label>
+                                <select id="message-type" name="category" class="w-full bg-white/80 border-b border-kasavu-gold/40 focus:border-kasavu-gold outline-none text-sm text-kasavu-green py-2 transition">
+                                    <option value="Heartfelt Wish">Warm Wedding Wish</option>
+                                    <option value="Fun Gossip / Story">Fun Story / Secret Memory</option>
+                                    <option value="Advice for Married Life">Advice for Married Life</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="guest-name" class="block text-xs font-bold uppercase tracking-wider text-kasavu-gold mb-1">With Love From,</label>
+                                <input type="text" id="guest-name" name="name" required placeholder="Your Name / Family" class="w-full bg-transparent border-b border-kasavu-gold/40 focus:border-kasavu-gold outline-none font-handwriting text-xl text-kasavu-green placeholder:text-gray-400 placeholder:font-sans placeholder:text-sm py-1 transition">
+                            </div>
+                        </div>
+
+                        <!-- Wax Seal Submit Button -->
+                        <div class="pt-8 flex flex-col items-center justify-center">
+                            <button type="submit" id="send-letter-btn" class="group relative flex items-center gap-3 bg-kasavu-green hover:bg-kasavu-lightgreen text-kasavu-gold px-8 py-3.5 rounded-full font-serif font-bold text-lg tracking-widest uppercase shadow-xl transition-all duration-300">
+                                <span class="w-7 h-7 rounded-full bg-kasavu-gold text-kasavu-green flex items-center justify-center font-bold text-xs shadow-inner">✉</span>
+                                <span>Fold & Send Letter</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Success State Notice -->
+                    <div id="letter-success" class="hidden text-center py-12 space-y-4">
+                        <div class="w-16 h-16 bg-kasavu-gold/20 text-kasavu-darkgold rounded-full flex items-center justify-center mx-auto text-3xl">
+                            💌
+                        </div>
+                        <h3 class="font-serif text-3xl font-bold text-kasavu-green">Your Letter is On Its Way!</h3>
+                        <p class="font-handwriting text-2xl text-kasavu-terracotta">Thank you for sharing your love with us. Arjun & Saranga will read it with huge smiles!</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <!-- TRAVEL & LOGISTICS SECTION -->
         <section id="travel" class="py-16 sm:py-24 px-4 bg-kasavu-cream">
             <div class="max-w-4xl mx-auto">
@@ -585,168 +605,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript Countdown, Mobile Menu & Smart Gallery Handling -->
-    <script>
-        // Dynamic Countdown Script
-        (function() {
-            // Target Date: December 20, 2026 at 11:00:00 IST
-            const targetDate = new Date('2026-12-20T11:00:00+05:30').getTime();
-
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const difference = targetDate - now;
-
-                if (difference > 0) {
-                    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                    document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
-                    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-                    document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
-                    document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
-                } else {
-                    document.getElementById('cd-days').textContent = '00';
-                    document.getElementById('cd-hours').textContent = '00';
-                    document.getElementById('cd-minutes').textContent = '00';
-                    document.getElementById('cd-seconds').textContent = '00';
-                }
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        })();
-
-        // Mobile Menu Toggle Script
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('menu-icon-open');
-        const iconClose = document.getElementById('menu-icon-close');
-
-        menuBtn.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.contains('hidden');
-            if (isOpen) {
-                mobileMenu.classList.remove('hidden');
-                iconOpen.classList.add('hidden');
-                iconClose.classList.remove('hidden');
-            } else {
-                mobileMenu.classList.add('hidden');
-                iconOpen.classList.remove('hidden');
-                iconClose.classList.add('hidden');
-            }
-        });
-
-        // Auto close menu when clicking link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                iconOpen.classList.remove('hidden');
-                iconClose.classList.add('hidden');
-            });
-        });
-
-        // Smart Dynamic Gallery Script (Percentage translation + iOS WebKit flex fixes)
-        document.addEventListener("DOMContentLoaded", () => {
-            const track = document.getElementById('slides-track');
-            const galleryContainer = document.getElementById('gallery-container');
-            const nextBtn = document.getElementById('next-btn');
-            const prevBtn = document.getElementById('prev-btn');
-            
-            let currentIndex = 0;
-            let loadedSlides = [];
-            let checksCompleted = 0;
-            const totalImagesToCheck = 10;
-
-            for (let i = 1; i <= totalImagesToCheck; i++) {
-                const imgPath = `images/gallery-${i}.jpg`;
-                const img = new Image();
-                img.src = imgPath;
-                
-                img.onload = function() {
-                    const slideDiv = document.createElement('div');
-                    slideDiv.className = 'gallery-slide';
-                    
-                    const slideImg = document.createElement('img');
-                    slideImg.src = imgPath;
-                    slideImg.alt = `Gallery Photo ${i}`;
-                    
-                    slideDiv.appendChild(slideImg);
-                    loadedSlides.push({ index: i, element: slideDiv });
-                    finalizeGallery();
-                };
-
-                img.onerror = function() {
-                    finalizeGallery();
-                };
-            }
-
-            function finalizeGallery() {
-                checksCompleted++;
-                if (checksCompleted === totalImagesToCheck) {
-                    if (loadedSlides.length > 0) {
-                        loadedSlides.sort((a, b) => a.index - b.index);
-                        loadedSlides.forEach(slide => track.appendChild(slide.element));
-                        galleryContainer.classList.remove('hidden');
-
-                        if (loadedSlides.length > 1) {
-                            const updateButtons = () => {
-                                prevBtn.style.display = currentIndex === 0 ? 'none' : 'block';
-                                nextBtn.style.display = currentIndex === loadedSlides.length - 1 ? 'none' : 'block';
-                            };
-
-                            const updateSlidePosition = () => {
-                                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                                updateButtons();
-                            };
-
-                            updateButtons();
-
-                            nextBtn.addEventListener('click', () => {
-                                if (currentIndex < loadedSlides.length - 1) {
-                                    currentIndex++;
-                                    updateSlidePosition();
-                                }
-                            });
-
-                            prevBtn.addEventListener('click', () => {
-                                if (currentIndex > 0) {
-                                    currentIndex--;
-                                    updateSlidePosition();
-                                }
-                            });
-
-                            let touchStartX = 0;
-                            let touchEndX = 0;
-
-                            track.addEventListener('touchstart', e => {
-                                touchStartX = e.changedTouches[0].screenX;
-                            });
-
-                            track.addEventListener('touchend', e => {
-                                touchEndX = e.changedTouches[0].screenX;
-                                if (touchStartX - touchEndX > 50) {
-                                    if (currentIndex < loadedSlides.length - 1) {
-                                        currentIndex++;
-                                        updateSlidePosition();
-                                    }
-                                } else if (touchEndX - touchStartX > 50) {
-                                    if (currentIndex > 0) {
-                                        currentIndex--;
-                                        updateSlidePosition();
-                                    }
-                                }
-                            });
-                        } else {
-                            nextBtn.style.display = 'none';
-                            prevBtn.style.display = 'none';
-                        }
-                    } else {
-                        galleryContainer.classList.add('hidden');
-                    }
-                }
-            }
-        });
-    </script>
+    <!-- External JavaScript File with Cache Busting -->
+    <script src="js/script.js?v=1.0"></script>
 </body>
 </html>

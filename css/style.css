@@ -1,0 +1,91 @@
+.kasavu-border-top {
+            border-top: 5px solid #D4AF37;
+            box-shadow: 0 -2px 10px rgba(212, 175, 55, 0.2);
+        }
+        .kasavu-border-bottom {
+            border-bottom: 5px solid #D4AF37;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+        .bg-pattern {
+            background-color: #FAF6EE;
+            background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#D4AF37 0.75px, #FAF6EE 0.75px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #AA820A 0%, #D4AF37 50%, #8A6503 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Gallery Carousel iOS WebKit Fixes */
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        .gallery-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+        }
+        .gallery-slide {
+            min-width: 100%;
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery-slide img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Animated Letter & Folding Styling */
+        .font-handwriting {
+            font-family: 'Caveat', cursive;
+        }
+
+        .letter-paper {
+            background: #FFFDF9;
+            background-image: repeating-linear-gradient(#FFFDF9, #FFFDF9 31px, #E8DFD1 31px, #E8DFD1 32px);
+            box-shadow: 0 10px 30px rgba(27, 59, 43, 0.08), inset 0 0 40px rgba(212, 175, 55, 0.05);
+            transform-origin: center center;
+            perspective: 1000px;
+        }
+
+        /* Detailed Folding & Flying Animation sequence */
+        .fold-and-fly {
+            animation: foldAndFlyAnimation 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes foldAndFlyAnimation {
+            0% {
+                transform: scale(1) rotateX(0deg) translateY(0);
+                opacity: 1;
+            }
+            30% {
+                transform: scale(0.95) rotateX(45deg) translateY(10px);
+                opacity: 0.95;
+            }
+            55% {
+                transform: scale(0.6) rotateX(90deg) translateY(30px);
+                opacity: 0.8;
+                box-shadow: 0 20px 40px rgba(27, 59, 43, 0.3);
+            }
+            75% {
+                transform: scale(0.4) rotateX(0deg) translateY(-50px) rotate(-5deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(0.1) translateY(-900px) rotate(15deg);
+                opacity: 0;
+            }
+        }
