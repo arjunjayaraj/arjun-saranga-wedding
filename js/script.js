@@ -27,9 +27,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateCountdown();
         setInterval(updateCountdown, 1000);
+        
     })();
 
-    // 2. Mobile Menu Toggle Script
+    // 2. Background Music & Speaker Toggle (muted icon initially, starts on scroll)
+    const bgAudio = document.getElementById('bg-audio');
+    const audioBtn = document.getElementById('audio-toggle-btn');
+    const iconSoundOn = document.getElementById('icon-sound-on');
+    const iconSoundOff = document.getElementById('icon-sound-off');
+
+    if (bgAudio && audioBtn) {
+        let userMuted = false;
+        let autoStarted = false;
+
+        const syncSpeakerIcon = () => {
+            const isPlaying = !bgAudio.paused;
+            iconSoundOn.classList.toggle('hidden', !isPlaying);
+            iconSoundOff.classList.toggle('hidden', isPlaying);
+        };
+
+        const cleanupAutoStartListeners = () => {
+            window.removeEventListener('scroll', handleFirstScrollOrGesture);
+            document.removeEventListener('click', handleFirstScrollOrGesture);
+            document.removeEventListener('touchstart', handleFirstScrollOrGesture);
+        };
+
+        const handleFirstScrollOrGesture = () => {
+            if (userMuted || autoStarted) return;
+            autoStarted = true;
+
+            bgAudio.play().then(() => {
+                syncSpeakerIcon();
+                cleanupAutoStartListeners();
+            }).catch(() => {
+                // If browser still blocks scroll-triggered audio, allow retry on next gesture
+                autoStarted = false;
+            });
+        };
+
+        // Start muted with muted icon visible
+        syncSpeakerIcon();
+
+        window.addEventListener('scroll', handleFirstScrollOrGesture, { passive: true });
+        document.addEventListener('click', handleFirstScrollOrGesture, { passive: true });
+        document.addEventListener('touchstart', handleFirstScrollOrGesture, { passive: true });
+
+        // Manual speaker toggle
+        audioBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bgAudio.paused) {
+                userMuted = false;
+                autoStarted = true;
+                cleanupAutoStartListeners();
+                bgAudio.play().then(syncSpeakerIcon).catch(syncSpeakerIcon);
+            } else {
+                userMuted = true;
+                cleanupAutoStartListeners();
+                bgAudio.pause();
+                syncSpeakerIcon();
+            }
+        });
+    }
+
+    // 3. Mobile Menu Toggle Script
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const iconOpen = document.getElementById('menu-icon-open');
@@ -58,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3. Smart Dynamic Gallery Script
+    // 4. Smart Dynamic Gallery Script
     const track = document.getElementById('slides-track');
     const galleryContainer = document.getElementById('gallery-container');
     const nextBtn = document.getElementById('next-btn');
@@ -158,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 4. Fold-and-Fly Letter Animation Handler
+    // 5. Fold-and-Fly Letter Animation Handler
     const wishesForm = document.getElementById('wishes-form');
     const letterCard = document.getElementById('letter-card');
     const letterSuccess = document.getElementById('letter-success');

@@ -605,6 +605,25 @@
         </div>
     </footer>
 
+    <!-- Background Audio & Floating Speaker Toggle -->
+    <audio id="bg-audio" src="audio/song.mp3" loop preload="auto"></audio>
+
+    <button id="audio-toggle-btn" type="button" aria-label="Toggle Background Music"
+        class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-kasavu-green text-kasavu-gold border-2 border-kasavu-gold shadow-xl flex items-center justify-center hover:bg-kasavu-lightgreen transition-all duration-200 focus:outline-none">
+        <!-- Sound On Icon (hidden initially) -->
+        <svg id="icon-sound-on" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        </svg>
+        <!-- Muted Icon (shown initially) -->
+        <svg id="icon-sound-off" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+        </svg>
+    </button>
+
     <!-- External JavaScript File with Cache Busting -->
     <script src="js/script.js?v=1.0"></script>
 </body>
